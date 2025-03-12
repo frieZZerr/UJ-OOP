@@ -1,0 +1,39 @@
+# Compiled binaries
+*.o
+*.ppu
+*.a
+*.so
+*.dll
+
+# Executables (files with no extension in Linux/macOS)
+*
+!*.*
+!*/
+
+# Free Pascal specific files
+*.compiled
+*.or
+*.rsj
+
+# Backup files
+*.bak
+*~
+*.~*
+*.backup
+
+# Lazarus IDE specific
+*.lps
+*.res
+backup/
+lib/
+
+# Debug files
+*.dbg
+
+# Logs
+*.log
+
+# Other common files to ignore
+.DS_Store
+desktop.ini
+Thumbs.db
