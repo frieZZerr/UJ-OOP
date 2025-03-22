@@ -1,4 +1,4 @@
-program RandomNumbers;
+program RandomSort;
 uses
   SysUtils;
 
@@ -6,18 +6,21 @@ type
   TIntArray = array of Integer;
 
 
-procedure Generate50RandomNumbers(var numbers: TIntArray);
+procedure GenerateRandomNumbers(var numbers: TIntArray; fromVal, toVal, count: Integer);
 var
   i: Integer;
+  range: Integer;
 begin
-  SetLength(numbers, 50);
+  SetLength(numbers, count);
   Randomize;
+
+  range := toVal - fromVal + 1;
   
-  for i := 0 to 49 do
-    numbers[i] := Random(101);
+  for i := 0 to count - 1 do
+    numbers[i] := fromVal + Random(range);
     
-  WriteLn('Generated 50 random numbers between 0 and 100:');
-  for i := 0 to 49 do
+  WriteLn('Generated ', count, ' random numbers between ', fromVal, ' and ', toVal, ':');
+  for i := 0 to count - 1 do
     Write(numbers[i], ' ');
   WriteLn;
 end;
@@ -56,11 +59,32 @@ end;
 
 var
   numbers: TIntArray;
+  fromVal, toVal, count: Integer;
+  choice: Char;
 begin
-  WriteLn('Random Number Generation Program');
-  WriteLn('------------------------------');
+  WriteLn('Random Number Generation and Bubble Sort Program');
+  WriteLn('----------------------------------------------');
   
-  Generate50RandomNumbers(numbers);
-
+  WriteLn('Do you want to use custom parameters for random number generation? (y/n)');
+  ReadLn(choice);
+  
+  if (choice = 'y') or (choice = 'Y') then
+  begin
+    Write('Enter minimum value: ');
+    ReadLn(fromVal);
+    
+    Write('Enter maximum value: ');
+    ReadLn(toVal);
+    
+    Write('Enter number of values to generate: ');
+    ReadLn(count);
+    
+    GenerateRandomNumbers(numbers, fromVal, toVal, count);
+  end
+  else
+  begin
+    GenerateRandomNumbers(numbers, 0, 100, 50);
+  end;
+  
   BubbleSort(numbers);
 end.
