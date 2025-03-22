@@ -23,6 +23,37 @@ begin
 end;
 
 
+procedure BubbleSort(var numbers: TIntArray);
+var
+  i, j, temp: Integer;
+  swapped: Boolean;
+begin
+  WriteLn('Sorting numbers using bubble sort...');
+  
+  for i := Length(numbers) - 1 downto 0 do
+  begin
+    swapped := False;
+    for j := 0 to i - 1 do
+    begin
+      if numbers[j] > numbers[j + 1] then
+      begin
+        temp := numbers[j];
+        numbers[j] := numbers[j + 1];
+        numbers[j + 1] := temp;
+        swapped := True;
+      end;
+    end;
+    if not swapped then
+      Break;
+  end;
+  
+  WriteLn('Sorted numbers:');
+  for i := 0 to Length(numbers) - 1 do
+    Write(numbers[i], ' ');
+  WriteLn;
+end;
+
+
 var
   numbers: TIntArray;
 begin
@@ -30,4 +61,6 @@ begin
   WriteLn('------------------------------');
   
   Generate50RandomNumbers(numbers);
+
+  BubbleSort(numbers);
 end.
