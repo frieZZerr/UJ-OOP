@@ -16,6 +16,6 @@ Write a Pascal program that contains two procedures. One generates a list of 50 
 
 :white_check_mark: 4.5 - [5 unit tests testing the procedures](https://github.com/frieZZerr/UJ-OOP/commit/f6c8e33df635d695e841d21f10fd5c75bca51c24)
 
-:x: 5.0 - [Bash script to run the Pascal application via docker]()
+:white_check_mark: 5.0 - [Bash script to run the Pascal application via docker](https://github.com/frieZZerr/UJ-OOP/commit/377a2af19cc1fbdf746e1d9d89a5d1d22a26c569)
 
 Code: [project_1](https://github.com/frieZZerr/UJ-OOP/tree/project_1)
