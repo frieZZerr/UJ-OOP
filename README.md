@@ -19,3 +19,19 @@ Write a Pascal program that contains two procedures. One generates a list of 50 
 :white_check_mark: 5.0 - [Bash script to run the Pascal application via docker](https://github.com/frieZZerr/UJ-OOP/commit/377a2af19cc1fbdf746e1d9d89a5d1d22a26c569)
 
 Code: [project_1](https://github.com/frieZZerr/UJ-OOP/tree/project_1)
+
+## Project 2 - Architectural Patterns (Symfony PHP)
+
+Create a web application based on the Symfony framework. Any database can be used; SQLite is suggested.
+
+:white_check_mark: 3.0 - [Create one model with a controller for products, following CRUD operations](https://github.com/frieZZerr/UJ-OOP/commit/6cfe1354bfda563bd58c4589d4487acf38c8e572)
+
+:white_check_mark: 3.5 - [Create scripts to test endpoints via curl](https://github.com/frieZZerr/UJ-OOP/commit/a5a2fac3b25e90c8993798696368e260132d9d66)
+
+:white_check_mark: 4.0 - [Create two additional controllers with their respective models](https://github.com/frieZZerr/UJ-OOP/commit/24d95caf9ee40ed8b88477ed7549a07a8ebaefdc)
+
+:x: 4.5 - [Create views for all controllers]()
+
+:x: 5.0 - [Create an administrative panel with mocked login functionality]()
+
+Code: [project_2](https://github.com/frieZZerr/UJ-OOP/tree/project_2)
