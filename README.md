@@ -35,3 +35,19 @@ Create a web application based on the Symfony framework. Any database can be use
 :x: 5.0 - [Create an administrative panel with mocked login functionality]()
 
 Code: [project_2](https://github.com/frieZZerr/UJ-OOP/tree/project_2)
+
+## Project 3 - Creational Patterns (Spring Boot + Kotlin)
+
+Create a simple authorization service that simulates user authorization using a provided username and password. The service should be injected into the controller using the @Autowired annotation. The application should include a controller and be written in Kotlin. It should be based on the Spring Boot framework. The authorization service should be a singleton.
+
+:white_check_mark: 3.0 - [Create a controller with data displayed from a list at an endpoint in JSON format](https://github.com/frieZZerr/UJ-OOP/commit/09bb34297f8f7b213bfb4ca1579ea1c5bfd498e8)
+
+:white_check_mark: 3.5 - [Create an authorization class (mock) as a Singleton in eager form](https://github.com/frieZZerr/UJ-OOP/commit/f77745d93106aa265638f6d516fd42b26f88631a)
+
+:white_check_mark: 4.0 - [Handle authorization data provided by the user](https://github.com/frieZZerr/UJ-OOP/commit/0b880c1e1953aa2ae8076e60ad7359c46fdc78f0)
+
+:white_check_mark: 4.5 - [Inject the singleton into the main class via @Autowired](https://github.com/frieZZerr/UJ-OOP/commit/cc83d5f598517392b299a876b97cdb01432ada3c)
+
+:white_check_mark: 5.0 - [Alongside the Eager version, provide a Singleton version in lazy form for selection](https://github.com/frieZZerr/UJ-OOP/commit/e543edc5b484039c39558b62b76c88534bcbdc34)
+
+Code: [project_3](https://github.com/frieZZerr/UJ-OOP/tree/project_3)
