@@ -1,5 +1,6 @@
 package com.example.demo.controller
 
+import com.example.demo.model.LoginRequest
 import com.example.demo.model.User
 import com.example.demo.service.AuthService
 import org.springframework.web.bind.annotation.*
@@ -20,8 +21,8 @@ class UserController(
     fun getAllUsers(): List<User> = allUsers
 
     @PostMapping("/login")
-    fun login(@RequestParam username: String, @RequestParam password: String): String {
-        return if (authService.authenticate(username, password)) {
+    fun login(@RequestBody loginRequest: LoginRequest): String {
+        return if (authService.authenticate(loginRequest.username, loginRequest.password)) {
             "Login successful"
         } else {
             "Login failed"
