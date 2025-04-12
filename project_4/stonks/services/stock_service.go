@@ -1,46 +1,22 @@
 package services
 
 import (
+	"os"
     "errors"
     "fmt"
     "stonks/models"
+	"stonks/proxy"
 
-    "github.com/go-resty/resty/v2"
     "gorm.io/gorm"
 )
 
-type FinnhubQuoteResponse struct {
-    CurrentPrice    float64 `json:"c"`
-    Change          float64 `json:"d"`
-    PercentChange   float64 `json:"dp"`
-    HighPriceOfDay  float64 `json:"h"`
-    LowPriceOfDay   float64 `json:"l"`
-    OpenPriceOfDay  float64 `json:"o"`
-    PreviousClose   float64 `json:"pc"`
-    Timestamp       int64   `json:"t"`
-}
-
-type FinnhubCompanyResponse struct {
-    Name          string `json:"name"`
-    Country       string `json:"country"`
-    Exchange      string `json:"exchange"`
-    IPO           string `json:"ipo"`
-    MarketCap     float64 `json:"marketCapitalization"`
-    ShareOutstanding float64 `json:"shareOutstanding"`
-    Industry      string `json:"finnhubIndustry"`
-    Logo          string `json:"logo"`
-    WebURL        string `json:"weburl"`
-}
-
 type StockService struct {
-    httpClient *resty.Client
-    apiKey     string
+    stockProxy *proxy.StockDataProxy
 }
 
 func NewStockService() *StockService {
     return &StockService{
-        httpClient: resty.New(),
-        apiKey:     os.Getenv("API_TOKEN"),
+        stockProxy: proxy.NewStockDataProxy(os.Getenv("API_TOKEN")),
     }
 }
 
@@ -56,19 +32,7 @@ func (s *StockService) GetStockInfo(symbol string) (*models.Stock, error) {
                 ExchangeID:  2,
             }
 
-            companyUrl := fmt.Sprintf("https://finnhub.io/api/v1/stock/profile2?symbol=%s&token=%s", symbol, s.apiKey)
-            companyResp, err := s.httpClient.R().
-                SetResult(&FinnhubCompanyResponse{}).
-                Get(companyUrl)
-
-            if err == nil {
-                companyData := companyResp.Result().(*FinnhubCompanyResponse)
-                if companyData.Name != "" {
-                    newStock.CompanyName = companyData.Name
-                }
-            }
-
-            err = s.updateStockFromAPI(&newStock)
+            err := s.stockProxy.UpdateStockData(&newStock)
             if err != nil {
                 return nil, fmt.Errorf("Couldn't download data from API: %w", err)
             }
@@ -83,36 +47,16 @@ func (s *StockService) GetStockInfo(symbol string) (*models.Stock, error) {
         return nil, fmt.Errorf("Error while downloading stock data: %w", result.Error)
     }
 
-    err := s.updateStockFromAPI(&stock)
+    err := s.stockProxy.UpdateStockData(&stock)
     if err != nil {
         return nil, err
     }
 
+    if err := models.DB.Save(&stock).Error; err != nil {
+        return nil, fmt.Errorf("Error while saving stock data: %w", err)
+    }
+
     return &stock, nil
-}
-
-func (s *StockService) updateStockFromAPI(stock *models.Stock) error {
-    quoteUrl := fmt.Sprintf("https://finnhub.io/api/v1/quote?symbol=%s&token=%s", stock.Symbol, s.apiKey)
-    quoteResp, err := s.httpClient.R().
-        SetResult(&FinnhubQuoteResponse{}).
-        Get(quoteUrl)
-
-    if err != nil {
-        return fmt.Errorf("Error while downloading company data: %w", err)
-    }
-
-    quoteData := quoteResp.Result().(*FinnhubQuoteResponse)
-
-    stock.CurrentPrice = quoteData.CurrentPrice
-    stock.PreviousClose = quoteData.PreviousClose
-    stock.Change = quoteData.Change
-    stock.ChangePercent = quoteData.PercentChange
-
-    if err := models.DB.Save(stock).Error; err != nil {
-        return fmt.Errorf("Error while saving stock data: %w", err)
-    }
-
-    return nil
 }
 
 func (s *StockService) ListExchanges() ([]models.StockExchange, error) {
