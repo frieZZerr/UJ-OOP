@@ -1,18 +1,13 @@
 package services
 
 import (
-    "os"
+    "errors"
     "fmt"
-    "github.com/go-resty/resty/v2"
-)
+    "stonks/models"
 
-type Stock struct {
-    Symbol      string  `json:"symbol"`
-    CompanyName string  `json:"companyName"`
-    Price       float64 `json:"price"`
-    Change      float64 `json:"change"`
-    ChangePercent float64 `json:"changePercent"`
-}
+    "github.com/go-resty/resty/v2"
+    "gorm.io/gorm"
+)
 
 type FinnhubQuoteResponse struct {
     CurrentPrice    float64 `json:"c"`
@@ -49,36 +44,97 @@ func NewStockService() *StockService {
     }
 }
 
-func (s *StockService) GetStockInfo(symbol string) (*Stock, error) {
-    quoteUrl := fmt.Sprintf("https://finnhub.io/api/v1/quote?symbol=%s&token=%s", symbol, s.apiKey)
+func (s *StockService) GetStockInfo(symbol string) (*models.Stock, error) {
+    var stock models.Stock
+    result := models.DB.Where("symbol = ?", symbol).First(&stock)
+
+    if result.Error != nil {
+        if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+            newStock := models.Stock{
+                Symbol:      symbol,
+                CompanyName: "Unknown",
+                ExchangeID:  2,
+            }
+
+            companyUrl := fmt.Sprintf("https://finnhub.io/api/v1/stock/profile2?symbol=%s&token=%s", symbol, s.apiKey)
+            companyResp, err := s.httpClient.R().
+                SetResult(&FinnhubCompanyResponse{}).
+                Get(companyUrl)
+
+            if err == nil {
+                companyData := companyResp.Result().(*FinnhubCompanyResponse)
+                if companyData.Name != "" {
+                    newStock.CompanyName = companyData.Name
+                }
+            }
+
+            err = s.updateStockFromAPI(&newStock)
+            if err != nil {
+                return nil, fmt.Errorf("Couldn't download data from API: %w", err)
+            }
+
+            if err := models.DB.Create(&newStock).Error; err != nil {
+                return nil, fmt.Errorf("Couldn't save new stock to database: %w", err)
+            }
+
+            return &newStock, nil
+        }
+
+        return nil, fmt.Errorf("Error while downloading stock data: %w", result.Error)
+    }
+
+    err := s.updateStockFromAPI(&stock)
+    if err != nil {
+        return nil, err
+    }
+
+    return &stock, nil
+}
+
+func (s *StockService) updateStockFromAPI(stock *models.Stock) error {
+    quoteUrl := fmt.Sprintf("https://finnhub.io/api/v1/quote?symbol=%s&token=%s", stock.Symbol, s.apiKey)
     quoteResp, err := s.httpClient.R().
         SetResult(&FinnhubQuoteResponse{}).
         Get(quoteUrl)
 
     if err != nil {
-        return nil, fmt.Errorf("Error while dowloading stock data: %w", err)
+        return fmt.Errorf("Error while downloading company data: %w", err)
     }
 
     quoteData := quoteResp.Result().(*FinnhubQuoteResponse)
 
-    companyUrl := fmt.Sprintf("https://finnhub.io/api/v1/stock/profile2?symbol=%s&token=%s", symbol, s.apiKey)
-    companyResp, err := s.httpClient.R().
-        SetResult(&FinnhubCompanyResponse{}).
-        Get(companyUrl)
+    stock.CurrentPrice = quoteData.CurrentPrice
+    stock.PreviousClose = quoteData.PreviousClose
+    stock.Change = quoteData.Change
+    stock.ChangePercent = quoteData.PercentChange
 
-    if err != nil {
-        return nil, fmt.Errorf("Error while downloading company data: %w", err)
+    if err := models.DB.Save(stock).Error; err != nil {
+        return fmt.Errorf("Error while saving stock data: %w", err)
     }
 
-    companyData := companyResp.Result().(*FinnhubCompanyResponse)
+    return nil
+}
 
-    stockData := &Stock{
-        Symbol:      symbol,
-        CompanyName: companyData.Name,
-        Price:       quoteData.CurrentPrice,
-        Change:      quoteData.Change,
-        ChangePercent: quoteData.PercentChange,
+func (s *StockService) ListExchanges() ([]models.StockExchange, error) {
+    var exchanges []models.StockExchange
+    if err := models.DB.Find(&exchanges).Error; err != nil {
+        return nil, err
     }
+    return exchanges, nil
+}
 
-    return stockData, nil
+func (s *StockService) GetExchange(code string) (*models.StockExchange, error) {
+    var exchange models.StockExchange
+    if err := models.DB.Where("code = ?", code).First(&exchange).Error; err != nil {
+        return nil, err
+    }
+    return &exchange, nil
+}
+
+func (s *StockService) ListStocksByExchange(exchangeID uint) ([]models.Stock, error) {
+    var stocks []models.Stock
+    if err := models.DB.Where("exchange_id = ?", exchangeID).Find(&stocks).Error; err != nil {
+        return nil, err
+    }
+    return stocks, nil
 }
