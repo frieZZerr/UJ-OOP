@@ -4,7 +4,7 @@ This is a repository for UJ Object-Oriented Programming. It will contain all the
 
 The `master` branch will be constantly updated after each project has been finished.
 
-## Project 1 - Pascal
+## Project 1 - Paradigms (Pascal)
 
 Write a Pascal program that contains two procedures. One generates a list of 50 random numbers from 0 to 100. The second procedure sorts the numbers using bubble sort.
 
@@ -20,7 +20,7 @@ Write a Pascal program that contains two procedures. One generates a list of 50 
 
 Code: [project_1](https://github.com/frieZZerr/UJ-OOP/tree/project_1)
 
-## Project 2 - Architectural Patterns (Symfony PHP)
+## Project 2 - Architectural Patterns (Symfony + PHP)
 
 Create a web application based on the Symfony framework. Any database can be used; SQLite is suggested.
 
@@ -51,3 +51,19 @@ Create a simple authorization service that simulates user authorization using a 
 :white_check_mark: 5.0 - [Alongside the Eager version, provide a Singleton version in lazy form for selection](https://github.com/frieZZerr/UJ-OOP/commit/e543edc5b484039c39558b62b76c88534bcbdc34)
 
 Code: [project_3](https://github.com/frieZZerr/UJ-OOP/tree/project_3)
+
+## Project 4 - Structural Patterns (Echo + Go)
+
+Create a Go application using the Echo framework. The application should have one endpoint and at least one proxy function that fetches stock market data from an external API. Requests to the endpoint can be sent as GET or POST.
+
+:white_check_mark: 3.0 - [Create an application using the Echo framework in Go that will have a Stock controller, allowing the retrieval of stock market data](https://github.com/frieZZerr/UJ-OOP/commit/75097584d5824fee64b4d3eea70b0ad8d15c41e2)
+
+:white_check_mark: 3.5 - [Create a Stock Market model using GORM, and load data from a list upon startup](https://github.com/frieZZerr/UJ-OOP/commit/db1de5a2eaa192f0c18820d58e1434b77ded219c)
+
+:white_check_mark: 4.0 - [Create a proxy class that will fetch data from an external service during a request to our controller](https://github.com/frieZZerr/UJ-OOP/commit/9fecb51e316bde2d1c67fc3fef1d25bdaf8cdbb0)
+
+:white_check_mark: 4.5 - [Save the fetched data from the external service to the database](https://github.com/frieZZerr/UJ-OOP/commit/db1de5a2eaa192f0c18820d58e1434b77ded219c)
+
+:white_check_mark: 5.0 - [Extend the endpoint to handle more stocks, returning JSON](https://github.com/frieZZerr/UJ-OOP/commit/db1de5a2eaa192f0c18820d58e1434b77ded219c)
+
+Code: [project_4](https://github.com/frieZZerr/UJ-OOP/tree/project_4)
