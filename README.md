@@ -83,3 +83,19 @@ Create a client application using the React.js library. Data between all compone
 :white_check_mark: 5.0 - [Use Axios and headers for CORS](https://github.com/frieZZerr/UJ-OOP/commit/6a45bb25710bded56e8e55b2719bc4961050a763)
 
 Code: [project_5](https://github.com/frieZZerr/UJ-OOP/tree/project_5)
+
+## Project 6 - Code Smells (SonarCloud)
+
+Improve the applications to achieve 0 bugs, 0 vulnerabilities, 0 security hotspots, and 0 security vulnerabilities.
+
+:white_check_mark: 3.0 - [Add a script to the appropriate client-side application code in git hooks](https://github.com/frieZZerr/UJ-OOP/commit/98274e06c8451ef7f8d1f31707fd349711ff0c6f)
+
+:white_check_mark: 3.5 - [Eliminate all bugs in the code in Sonar (client-side application code)](https://github.com/frieZZerr/UJ-OOP/commit/98274e06c8451ef7f8d1f31707fd349711ff0c6f)
+
+:white_check_mark: 4.0 - [Eliminate all code smells in the code in Sonar (client-side application code)](https://github.com/frieZZerr/UJ-OOP/commit/98274e06c8451ef7f8d1f31707fd349711ff0c6f)
+
+:white_check_mark: 4.5 - [Eliminate all vulnerabilities and security issues in the code in Sonar (client-side application code](https://github.com/frieZZerr/UJ-OOP/commit/98274e06c8451ef7f8d1f31707fd349711ff0c6f)
+
+:white_check_mark: 5.0 - [Eliminate all bugs and code smells in the server-side application code](https://github.com/frieZZerr/UJ-OOP/commit/98274e06c8451ef7f8d1f31707fd349711ff0c6f)
+
+Code: [project_6](https://github.com/frieZZerr/UJ-OOP/tree/project_6)
