@@ -67,3 +67,19 @@ Create a Go application using the Echo framework. The application should have on
 :white_check_mark: 5.0 - [Extend the endpoint to handle more stocks, returning JSON](https://github.com/frieZZerr/UJ-OOP/commit/db1de5a2eaa192f0c18820d58e1434b77ded219c)
 
 Code: [project_4](https://github.com/frieZZerr/UJ-OOP/tree/project_4)
+
+## Project 5 - Behavioral Patterns (React + JavaScript/Typescript)
+
+Create a client application using the React.js library. Data between all components should be passed using React hooks.
+
+:white_check_mark: 3.0 - [Create Products and Payments components; Payments should send data to the server application, Products should fetch product data from the server application](https://github.com/frieZZerr/UJ-OOP/commit/6a45bb25710bded56e8e55b2719bc4961050a763)
+
+:white_check_mark: 3.5 - [Add Cart with a view; routing should be utilized](https://github.com/frieZZerr/UJ-OOP/commit/6a45bb25710bded56e8e55b2719bc4961050a763)
+
+:white_check_mark: 4.0 - [Pass data between all components using React hooks](https://github.com/frieZZerr/UJ-OOP/commit/6a45bb25710bded56e8e55b2719bc4961050a763)
+
+:white_check_mark: 4.5 - [Create docker-compose to run the server and client applications on Docker](https://github.com/frieZZerr/UJ-OOP/commit/6a45bb25710bded56e8e55b2719bc4961050a763)
+
+:white_check_mark: 5.0 - [Use Axios and headers for CORS](https://github.com/frieZZerr/UJ-OOP/commit/6a45bb25710bded56e8e55b2719bc4961050a763)
+
+Code: [project_5](https://github.com/frieZZerr/UJ-OOP/tree/project_5)
