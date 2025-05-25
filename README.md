@@ -100,7 +100,7 @@ Improve the applications to achieve 0 bugs, 0 vulnerabilities, 0 security hotspo
 
 Code: [project_6](https://github.com/frieZZerr/UJ-OOP/tree/project_6)
 
-## Project 7 - Antywzorce (Vapor + Swift)
+## Project 7 - Antipatterns (Vapor + Swift)
 
 Create a simple application using Vapor, utilizing Leaf as the template engine and Fluent as the ORM. Create three models and implement full CRUD (Create, Read, Update, Delete) operations for each of them. At least one of the models should have a relationship. The CRUD operations should be reflected in the Leaf templates.
 
@@ -115,3 +115,19 @@ Create a simple application using Vapor, utilizing Leaf as the template engine a
 :x: 5.0 - [Deploy application to Heroku]()
 
 Code: [project_7](https://github.com/frieZZerr/UJ-OOP/tree/project_7)
+
+## Project 8 - Tests (WebDriver + Python)
+
+Add tests for selected project (project_5).
+
+:white_check_mark: 3.0 - [Create 30 test cases in Python using WebDriver](https://github.com/frieZZerr/UJ-OOP/commit/2f652ad7d5e4361c4b899883d429d90abf88e28d)
+
+:white_check_mark: 3.5 - [Extend functional tests to include a minimum of 100 assertions](https://github.com/frieZZerr/UJ-OOP/commit/92c67c438cad06baa461d92840447501a2792d08)
+
+:x: 4.0 - [Create unit tests for a previously selected project with a minimum of 100 assertions]()
+
+:x: 4.5 - [Add API tests, covering all endpoints with at least one negative scenario per endpoint]()
+
+:x: 5.0 - [Run functional tests on BrowserStack on a mobile device]()
+
+Code: [project_8](https://github.com/frieZZerr/UJ-OOP/tree/project_8)
