@@ -1,0 +1,15 @@
+#extend("base"):
+#export("content"):
+<h1>Edit product</h1>
+<form method="post" action="/products/#(product.id)">
+    <label>Name: <input type="text" name="name" value="#(product.name)" required></label>
+    <label>Price: <input type="number" step="0.01" name="price" value="#(product.price)" required></label>
+    <label>Description: <textarea name="description" required>#(product.description)</textarea></label>
+    <label>
+        <input type="checkbox" name="isAvailable" value="true" #if(product.isAvailable):checked#endif>
+        Available
+    </label>
+    <button type="submit">Save changes</button>
+</form>
+#endexport
+#endextend

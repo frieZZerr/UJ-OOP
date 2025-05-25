@@ -1,0 +1,32 @@
+#extend("base"):
+#export("content"):
+<h1>Products</h1>
+<a href="/products/create">Add new product</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Availability</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        #for(product in products):
+        <tr>
+            <td>#(product.name)</td>
+            <td>#(product.price)</td>
+            <td>#(product.isAvailable ? "Available" : "Unavailable")</td>
+            <td>
+                <a href="/products/#(product.id)/edit">Edit</a>
+                <form method="post" action="/products/#(product.id)/delete">
+                    <button type="submit">Remove</button>
+                </form>
+            </td>
+        </tr>
+        #endfor
+    </tbody>
+</table>
+#endexport
+#endextend

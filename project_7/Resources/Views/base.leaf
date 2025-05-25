@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VaporShop - #export("title")#endexport</title>
+</head>
+<body>
+    #export("content")#endexport
+</body>
+</html>

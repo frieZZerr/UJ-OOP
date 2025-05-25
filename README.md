@@ -99,3 +99,19 @@ Improve the applications to achieve 0 bugs, 0 vulnerabilities, 0 security hotspo
 :white_check_mark: 5.0 - [Eliminate all bugs and code smells in the server-side application code](https://github.com/frieZZerr/UJ-OOP/commit/98274e06c8451ef7f8d1f31707fd349711ff0c6f)
 
 Code: [project_6](https://github.com/frieZZerr/UJ-OOP/tree/project_6)
+
+## Project 7 - Antywzorce (Vapor + Swift)
+
+Create a simple application using Vapor, utilizing Leaf as the template engine and Fluent as the ORM. Create three models and implement full CRUD (Create, Read, Update, Delete) operations for each of them. At least one of the models should have a relationship. The CRUD operations should be reflected in the Leaf templates.
+
+:white_check_mark: 3.0 - [Create controller and model for Products in accordance with CRUD operations using the Fluent ORM](https://github.com/frieZZerr/UJ-OOP/commit/9cf215ca3972b0216d190343adb0b82275f55084)
+
+:white_check_mark: 3.5 - [Build templates using the Leaf templating engine](https://github.com/frieZZerr/UJ-OOP/commit/9cf215ca3972b0216d190343adb0b82275f55084)
+
+:x: 4.0 - [Create controller and model for Categories, including a relationship between the models]()
+
+:x: 4.5 - [Use redis for data storage]()
+
+:x: 5.0 - [Deploy application to Heroku]()
+
+Code: [project_7](https://github.com/frieZZerr/UJ-OOP/tree/project_7)
