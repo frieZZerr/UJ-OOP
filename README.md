@@ -131,3 +131,19 @@ Add tests for selected project (project_5).
 :x: 5.0 - [Run functional tests on BrowserStack on a mobile device]()
 
 Code: [project_8](https://github.com/frieZZerr/UJ-OOP/tree/project_8)
+
+## Project 9 - Mobile-First (Android + Kotlin)
+
+Create a simple Android application in Kotlin with multiple views.
+
+:white_check_mark: 3.0 - [Create a list of categories and products](https://github.com/frieZZerr/UJ-OOP/commit/1e3ea1233099bc29a2542cfcbdede0f7cd32ba84)
+
+:white_check_mark: 3.5 - [Add a shopping cart view](https://github.com/frieZZerr/UJ-OOP/commit/dafcbf5dbfd353a196cfc292488aa226aefecedf)
+
+:x: 4.0 - [Create a database using Realm]()
+
+:x: 4.5 - [Integrate Stripe for payments]()
+
+:x: 5.0 - [Implement user login and registration via OAuth2]()
+
+Code: [project_9](https://github.com/frieZZerr/UJ-OOP/tree/project_9)
